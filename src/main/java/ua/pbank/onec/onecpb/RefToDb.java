@@ -2,7 +2,6 @@ package ua.pbank.onec.onecpb;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
-import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,14 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.Statement;
 
-/**
- * Created by Vsevolod on 20.04.2015.
- */
 @WebServlet("/reference")
 public class RefToDb extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -39,12 +33,11 @@ public class RefToDb extends HttpServlet {
                 try {
                     InitialContext ic = new InitialContext();
                     Context xmlContext = (Context) ic.lookup("java:comp/env");
-                    DataSource myDatasource = null;
+                    DataSource myDatasource;
                     myDatasource = (DataSource) xmlContext.lookup("jdbc/freshStatDS");
                     con = myDatasource.getConnection();
                     String query = "INSERT INTO pb_register_users (ref_id, fio, email, login, phone) values(?, ?, ?, ?, ?)";
                     pStmt = con.prepareStatement(query);
-                    //pStmt.setInt(1, Integer.valueOf(refId));
                     pStmt.setString(1, refId);
                     pStmt.setString(2, name);
                     pStmt.setString(3, email);
