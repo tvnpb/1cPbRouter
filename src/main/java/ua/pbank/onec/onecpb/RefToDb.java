@@ -31,7 +31,6 @@ public class RefToDb extends HttpServlet {
             phone = request.getParameter("phone");
             if(refId != null && name != null && email!=null && login!=null){
                 try {
-                    
                     InitialContext ic = new InitialContext();
                     Context xmlContext = (Context) ic.lookup("java:comp/env");
                     DataSource myDatasource;
