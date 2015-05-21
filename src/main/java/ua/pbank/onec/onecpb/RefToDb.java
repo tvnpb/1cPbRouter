@@ -42,7 +42,6 @@ public class RefToDb extends HttpServlet {
                     DataSource myDatasource = null;
                     myDatasource = (DataSource) xmlContext.lookup("jdbc/freshStatDS");
                     con = myDatasource.getConnection();
-                    Statement st = con.createStatement();
                     String query = "INSERT INTO pb_register_users (ref_id, fio, email, login, phone) values(?, ?, ?, ?, ?)";
                     pStmt = con.prepareStatement(query);
                     //pStmt.setInt(1, Integer.valueOf(refId));
