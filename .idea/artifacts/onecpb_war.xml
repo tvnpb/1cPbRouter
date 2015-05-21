@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="onecpb:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="onecpb.war">
+      <element id="artifact" artifact-name="onecpb:war exploded" />
+    </root>
+  </artifact>
+</component>
